@@ -1,0 +1,23 @@
+func maxArea(height []int) int {
+    if len(height) <2 {
+        return 0
+    }
+    a:=0
+    b:=len(height)-1
+    sum:=0
+    ls:=0
+    for a<b {
+        if height[a]>height[b] {
+            ls=height[b]*(b-a)
+            b--
+        } else {
+             ls=height[a]*(b-a)
+             a++
+        }
+        if(sum<ls){
+            sum=ls
+        }
+    }
+
+    return sum
+}
