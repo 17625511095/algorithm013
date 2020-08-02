@@ -1,0 +1,24 @@
+func isAnagram(s string, t string) bool {
+    if len(s)!=len(t) {
+        return false
+    }
+     dic:=make(map[string]int) 
+    for i:=0;i<len(s);i++ {
+        if v,ok:=dic[string(s[i])];ok{
+            dic[string(s[i])]=v+1
+        }else {
+            dic[string(s[i])]=1
+        }
+        if v,ok:=dic[string(t[i])];ok{
+            dic[string(t[i])]=v-1
+        }else {
+            dic[string(t[i])]=-1
+        }
+    }
+    for _,v :=range dic {
+        if v!=0 {
+            return false
+        }
+    }
+    return true
+}

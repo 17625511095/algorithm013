@@ -1,0 +1,23 @@
+func preorderTraversal(root *TreeNode) []int {
+    var arr []int
+    if root==nil{
+        return arr
+    }
+	var stack []*TreeNode
+
+    stack=append(stack,root)
+	for len(stack)>0 { 
+        arr=append(arr,root.Val)
+        if root.Right !=nil {
+                stack=append(stack,root.Right)
+        }
+        if root.Left !=nil {
+                stack=append(stack,root.Left)
+        }
+        
+		root = stack[len(stack)-1]     
+		stack = stack[:len(stack)-1]
+	}
+	return arr;
+}
+
