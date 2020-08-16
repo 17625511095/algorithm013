@@ -1,0 +1,24 @@
+func generateParenthesis(n int) []string {
+    var arr=make([]string,0)
+    arr=replace(arr,"",n,0,0)
+
+    return arr
+}
+
+func replace(arr []string,res string,max int,left int,right int)[]string{
+    if len(res)==max*2 {
+        arr=append(arr,res)
+    }
+
+    if left<max{
+        res+="("
+        arr=replace(arr,res,max,left+1,right)
+        res=res[:len(res)-1]
+    }
+    if right<left {
+        res+=")"
+        arr=replace(arr,res,max,left,right+1)
+        res=res[:len(res)-1]
+    }
+    return arr
+}

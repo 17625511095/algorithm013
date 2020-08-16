@@ -1,0 +1,28 @@
+func buildTree(preorder []int, midorder []int) *TreeNode {
+  if len(preorder) == 0 {
+        return nil
+    }
+
+    root := &TreeNode{preorder[0], nil, nil}
+    stack := []*TreeNode{}
+    stack = append(stack, root)
+    var midorderIndex int
+
+    for i := 1; i < len(preorder); i++ {
+        preorderVal := preorder[i]
+        node := stack[len(stack)-1]
+        if node.Val != midorder[midorderIndex] {
+            node.Left = &TreeNode{preorderVal, nil, nil}
+            stack = append(stack, node.Left)
+        } else {
+            for len(stack) != 0 && stack[len(stack)-1].Val == midorder[midorderIndex] {
+                node = stack[len(stack)-1]
+                stack = stack[:len(stack)-1]
+                midorderIndex++
+            }
+            node.Right = &TreeNode{preorderVal, nil, nil}
+            stack = append(stack, node.Right)
+        }
+    }
+    return root
+}
